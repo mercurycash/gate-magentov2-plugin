@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <mercurypayment>
+                <active>1</active>
+                <model>Mercury\Payment\Model\Mercury</model>
+                <title>Pay With Crypto</title>
+                <description>Powered by Mercury Gate</description>
+                <bitcoinmin>2</bitcoinmin>
+                <ethereummin>2</ethereummin>
+                <dashmin>2</dashmin>
+                <mode>prod</mode>
+                <order_status>pending_payment</order_status>
+                <allowspecific>0</allowspecific>
+            </mercurypayment>
+        </payment>
+    </default>
+</config>

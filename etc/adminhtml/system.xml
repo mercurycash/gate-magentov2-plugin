@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="mercurypayment" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Mercury Payment</label>
+
+                <field id="active" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable Mercury Gateway</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Title</label>
+                    <comment><![CDATA[This controls the title which the user sees during checkout.]]></comment>
+                </field>
+
+                <field id="description" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Description</label>
+                    <comment><![CDATA[This controls the description which the user sees during checkout.]]></comment>
+                </field>
+
+                <field id="bitcoinmin" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Set min amount of cart for Bitcoin</label>
+                </field>
+
+                <field id="ethereummin" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Set min amount of cart for Ethereum</label>
+                </field>
+
+                <field id="dashmin" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Set min amount of cart for DASH</label>
+                </field>
+
+                <field id="mode" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Mode Mercury Gateway</label>
+                    <source_model>Mercury\Payment\Model\Config\Source\EnvironmentSource</source_model>
+                    <comment><![CDATA[Place the payment gateway in test mode using test API keys.]]></comment>
+                </field>
+
+                <field id="test_publishable_key" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Test Publishable Key</label>
+                    <depends>
+                        <field id="mode">test</field>
+                    </depends>
+                </field>
+                <field id="test_private_key" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Test Private Key</label>
+                    <depends>
+                        <field id="mode">test</field>
+                    </depends>
+                </field>
+
+                <field id="publishable_key" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Life Publishable Key</label>
+                    <depends>
+                        <field id="mode">prod</field>
+                    </depends>
+                </field>
+                <field id="private_key" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Life Private Key</label>
+                    <depends>
+                        <field id="mode">prod</field>
+                    </depends>
+                </field>
+                <field id="model"></field>
+            </group>
+        </section>
+    </system>
+</config>
