@@ -1,7 +1,13 @@
 let config = {
     map: {
         '*': {
-            kjua: 'Mercury_Payment/js/kjua.min'
+            mercuryApp: 'Mercury_Payment/js/app'
         }
+    },
+    paths: {
+        'kjua': 'Mercury_Payment/js/kjua.min'
+    },
+    shim: {
+        "kjua": ["jquery"]
     }
 };

@@ -1,5 +1,5 @@
 {
-    "name": "mercury/magento-mercury-payment",
+    "name": "mercurycash/gate-magentov2-plugin",
     "description": "Mercury Payment Extension for Magento 2",
     "keywords": [
         "magento 2",
