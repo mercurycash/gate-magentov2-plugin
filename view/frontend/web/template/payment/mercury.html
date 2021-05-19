@@ -14,29 +14,11 @@
             <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
             <!-- ko template: getTemplate() --><!-- /ko -->
             <!--/ko-->
-
-            <div class="field required">
-                <label data-bind="attr: {for: getCode() + '_transaction_result'}" class="label mercury-margin">
-                    <span><!-- ko i18n: 'Select Crypto Currency:'--><!-- /ko --></span>
-                </label>
-
-                <div class="control mercury-margin">
-                    <select name="payment[transaction_result]"
-                            class="select mercury_coin_val"
-                            data-bind="
-                                  options: getTransactionResults(),
-                                  optionsValue: 'value',
-                                  optionsText: 'transaction_result',
-                                  value: transactionResult">
-                    </select>
-                </div>
-                <div class="mercury-qr-place-body">
-
-                </div>
-            </div>
         </div>
         <div class="checkout-agreements-block">
-            <div class="mercury-qr-img"></div>
+
+            <div id="mercury-cash"></div>
+
             <!-- ko foreach: $parent.getRegion('before-place-order') -->
             <!-- ko template: getTemplate() --><!-- /ko -->
             <!--/ko-->

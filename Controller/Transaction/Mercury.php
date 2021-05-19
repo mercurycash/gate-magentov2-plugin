@@ -4,81 +4,72 @@ declare(strict_types=1);
 
 namespace Mercury\Payment\Controller\Transaction;
 
-require_once __DIR__ . '/../../sdk/vendor/autoload.php';
-
-use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Serialize\SerializerInterface;
-use Magento\Store\Model\StoreManagerInterface;
-use Mercury\Payment\Helper\Config;
-use MercuryCash\SDK\Adapter;
-use MercuryCash\SDK\Auth\APIKey;
-use MercuryCash\SDK\Endpoints\Transaction;
+use Mercury\Payment\Api\MercuryGatewayInterface;
+use Mercury\Payment\Service\MercuryGateway;
 
 class Mercury extends Action
 {
-    /**
-     * @var Config
-     */
-    private $config;
-
-    /**
-     * @var Session
-     */
-    private $cart;
-
-    /**
-     * @var StoreManagerInterface
-     */
-    private $storeManager;
-
     /**
      * @var SerializerInterface
      */
     private $serializer;
 
+    /**
+     * @var MercuryGateway
+     */
+    private $mercuryGateway;
+
     public function __construct(
         Context $context,
-        Config $config,
-        Session $cart,
-        StoreManagerInterface $storeManager,
+        MercuryGateway $mercuryGateway,
         SerializerInterface $serializer
     ) {
         parent::__construct($context);
-        $this->config = $config;
-        $this->cart = $cart;
-        $this->storeManager = $storeManager;
         $this->serializer = $serializer;
+        $this->mercuryGateway = $mercuryGateway;
     }
 
     public function execute()
     {
-        $quote = $this->cart->getQuote();
-
-        $apiKey = new APIKey($this->config->getPublishableKey(), $this->config->getPrivateKey());
-        $adapter = new Adapter($apiKey, 'https://api-way.mercurydev.tk');
-        $endpoint = new Transaction($adapter);
+        $endpoint = $this->mercuryGateway->getInstance();
+        $crypto = $this->getRequest()->getParam('crypto');
 
         $transaction = $endpoint->create([
-            'email' => null !== $quote->getBillingAddress() ? $quote->getBillingAddress()->getEmail() : '',
+            'email' => $this->getRequest()->getParam('email'),
             'crypto' => $this->getRequest()->getParam('crypto'),
-            'fiat' => $this->storeManager->getStore()->getCurrentCurrencyCode(),
-            'amount' => $quote->getGrandTotal(),
+            'fiat' => $this->getRequest()->getParam('currency'),
+            'amount' => $this->getRequest()->getParam('price'),
             'tip' => 0,
         ]);
 
         $endpoint->process($transaction->getUuid());
 
+        $address = $transaction->getAddress();
+        $amount = $transaction->getCryptoAmount();
+
+        $cryptoName = MercuryGatewayInterface::CRYPTO[$crypto];
+
+        $qrCodeText = '';
+        $qrCodeText .= $cryptoName . ':' . $address . '?';
+        $qrCodeText .= 'amount=' . $amount . '&';
+        $qrCodeText .= 'cryptoCurrency=' . $crypto;
+
         return $this->getResponse()->representJson(
             $this->serializer->serialize([
-                'uuid' => $transaction->getUuid(),
-                'cryptoAmount' => $transaction->getCryptoAmount(),
-                'fiatIsoCode' => $transaction->getFiatIsoCode(),
-                'fiatAmount' => $transaction->getFiatAmount(),
-                'rate' => $transaction->getRate(),
-                'address' => $transaction->getAddress(),
-                'fee' => $transaction->getFee()
+                'data' => [
+                    'uuid' => $transaction->getUuid(),
+                    'cryptoAmount' => $amount,
+                    'fiatIsoCode' => $transaction->getFiatIsoCode(),
+                    'fiatAmount' => $transaction->getFiatAmount(),
+                    'exchangeRate' => $transaction->getRate(),
+                    'address' => $address,
+                    'networkFee' => $transaction->getFee(),
+                    'cryptoCurrency' => $crypto,
+                    'qrCodeText' => $qrCodeText,
+                ],
             ])
         );
     }

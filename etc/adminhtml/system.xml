@@ -64,6 +64,9 @@
                         <field id="mode">prod</field>
                     </depends>
                 </field>
+                <field id="pending_set" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Set milliseconds for pending</label>
+                </field>
                 <field id="model"></field>
             </group>
         </section>

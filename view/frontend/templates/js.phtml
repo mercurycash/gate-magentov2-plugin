@@ -7,10 +7,8 @@
 <script type="text/x-magento-init">
     {
         "*": {
-            "Mercury_Payment/js/app": {
-                "ajaxUrl": "<?php echo $this->getAjaxUrl() ?>",
-                "ajaxUrlCheckStatus": "<?php echo $this->getAjaxUrlCheckStatus() ?>"
-            }
+            "Mercury_Payment/js/app": <?php echo json_encode($this->mercuryData()) ?>
         }
     }
 </script>
+

@@ -1,6 +1,6 @@
 {
     "name": "mercurycash/gate-magentov2-plugin",
-    "description": "Mercury Payment Extension for Magento 2",
+    "description": "Mercury Payment Crypto Extension for Magento 2",
     "keywords": [
         "magento 2",
         "magento2-extension",
@@ -13,7 +13,7 @@
         "magento/module-payment": "100.3.*"
     },
     "type": "magento2-module",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "license": "MIT",
     "autoload": {
         "files": [
