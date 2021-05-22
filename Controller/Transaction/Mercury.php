@@ -24,7 +24,7 @@ class Mercury extends Action
 
     public function __construct(
         Context $context,
-        MercuryGateway $mercuryGateway,
+        MercuryGatewayInterface $mercuryGateway,
         SerializerInterface $serializer
     ) {
         parent::__construct($context);
