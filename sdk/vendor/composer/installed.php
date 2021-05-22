@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'b3357cfb870a5ba219673d7bbb06b1ded49beaa5',
+    'reference' => '3039872b42255dd988c5ec7d9a27778a7d011040',
     'name' => 'mercury-cash/sdk',
   ),
   'versions' => 
@@ -48,7 +48,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'b3357cfb870a5ba219673d7bbb06b1ded49beaa5',
+      'reference' => '3039872b42255dd988c5ec7d9a27778a7d011040',
     ),
     'psr/http-client' => 
     array (
