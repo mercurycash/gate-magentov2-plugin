@@ -8,12 +8,10 @@
     ],
     "require": {
         "php": "~7.3",
-        "magento/framework": "102.0.*",
-        "magento/module-checkout": "100.3.*",
-        "magento/module-payment": "100.3.*"
+        "mercury-cash/sdk": "dev-master"
     },
     "type": "magento2-module",
-    "version": "2.0.0",
+    "version": "1.2.0",
     "license": "MIT",
     "autoload": {
         "files": [
@@ -23,5 +21,11 @@
             "Mercury\\Payment\\": "",
             "MercuryCash\\" : "sdk/"
         }
-    }
+    },
+    "repositories": [
+        {
+            "url": "https://github.com/mercurycash/gate-plugins-sdk.git",
+            "type": "git"
+        }
+    ]
 }

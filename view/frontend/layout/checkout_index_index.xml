@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Mercury_Payment::css/react/build/static/css/main.d17b8e8c.css"/>
+    </head>
     <referenceContainer name="head.additional">
         <block class="Mercury\Payment\Block\Config" name="mercury.payment.js" template="Mercury_Payment::js.phtml" />
     </referenceContainer>

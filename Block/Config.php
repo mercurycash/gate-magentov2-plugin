@@ -50,7 +50,7 @@ class Config extends Template
         return __($field);
     }
 
-    public function mercuryData()
+    public function mercuryData(): array
     {
         return [
             'cart_price' => $this->getQuote()->getGrandTotal(),

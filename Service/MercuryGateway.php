@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Mercury\Payment\Service;
 
+require_once __DIR__ . '/../sdk/vendor/autoload.php';
+
 use Mercury\Payment\Api\MercuryGatewayInterface;
 use Mercury\Payment\Helper\Config;
 use MercuryCash\SDK\Adapter;

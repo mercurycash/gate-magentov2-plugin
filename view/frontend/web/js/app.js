@@ -1,6 +1,7 @@
 define([
     'jquery',
-], function ($, MercurySDK) {
+    'Mercury_Payment/js/react/build/static/js/main.a09f256b'
+], function ($) {
     'use strict';
 
     /**
@@ -14,28 +15,26 @@ define([
                 merParam = config;
             }
 
-            console.log(MercurySDK);
-
-            let sdk = new MercurySDK({
+            let sdk = new window.MercurySDK({
                 checkoutUrl: merParam.pathCreateTransaction,
                 statusUrl: merParam.pathCheckTransaction,
                 checkStatusInterval: parseInt(merParam.time, 2),
                 mount: "#mercury-cash",
                 lang: "en",
                 limits: {
-                    BTC: merParam.btc,
-                    ETH: merParam.eth,
-                    DASH: merParam.dash
+                    BTC: parseFloat(merParam.btc),
+                    ETH: parseFloat(merParam.eth),
+                    DASH: parseFloat(merParam.dash)
                 }
             });
 
-            sdk.checkout(merParam.cart_price, merParam.currency, merParam.email);
+            sdk.checkout(parseFloat(merParam.cart_price), merParam.currency, merParam.email);
 
             sdk.on("close", (obj) => {
                 if (obj.status && (obj.status === "TRANSACTION_APROVED")) {
 
                 } else {
-                    location.reload();
+                    //location.reload();
                 }
             });
         });
