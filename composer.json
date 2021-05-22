@@ -23,8 +23,12 @@
     },
     "repositories": [
         {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        },
+        {
             "url": "git@github.com:mercurycash/gate-plugins-sdk.git",
-            "type": "vcs"
+            "type": "git"
         }
     ]
 }
