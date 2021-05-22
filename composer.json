@@ -8,7 +8,7 @@
     ],
     "require": {
         "php": "~7.3",
-        "mercury-cash/sdk": "dev-master"
+        "mercury-cash/sdk": "dev-main"
     },
     "type": "magento2-module",
     "version": "1.3.0",
@@ -23,8 +23,8 @@
     },
     "repositories": [
         {
-            "url": "https://github.com/mercurycash/gate-plugins-sdk.git",
-            "type": "git"
+            "url": "git@github.com:mercurycash/gate-plugins-sdk.git",
+            "type": "vcs"
         }
     ]
 }
