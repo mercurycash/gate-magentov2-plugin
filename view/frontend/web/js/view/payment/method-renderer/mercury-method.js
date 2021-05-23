@@ -1,26 +1,26 @@
 define([
-    'ko',
-    'Magento_Checkout/js/view/payment/default'
+    "ko",
+    "Magento_Checkout/js/view/payment/default"
 ], function (ko, Component) {
-    'use strict';
+    "use strict";
 
     return Component.extend({
         defaults: {
-            template: 'Mercury_Payment/payment/mercury',
+            template: "Mercury_Payment/payment/mercury",
             transactionResult: ''
         },
 
         initObservable: function () {
             this._super()
                 .observe([
-                    'transactionResult'
+                    "transactionResult"
                 ]);
 
             return this;
         },
 
         getCode: function() {
-            return 'mercurypayment';
+            return "mercurypayment";
         },
 
         getData: function() {

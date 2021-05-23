@@ -6,8 +6,8 @@ define([
 
     rendererList.push(
         {
-            type: 'mercurypayment',
-            component: 'Mercury_Payment/js/view/payment/method-renderer/mercury-method'
+            type: "mercurypayment",
+            component: "Mercury_Payment/js/view/payment/method-renderer/mercury-method"
         }
     );
 

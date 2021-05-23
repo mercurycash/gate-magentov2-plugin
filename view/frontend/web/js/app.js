@@ -1,8 +1,8 @@
 define([
-    'jquery',
-    'Mercury_Payment/js/react/build/static/js/main.a09f256b'
+    "jquery",
+    "Mercury_Payment/js/react/build/static/js/main.a09f256b"
 ], function ($) {
-    'use strict';
+    "use strict";
 
     /**
      * @param {Object} config
@@ -10,12 +10,13 @@ define([
     return function (config) {
         let merParam = {};
 
-        $('body').on('click', '#mercurypayment', function() {
+        $("body").on("click", "#mercurypayment", function() {
             if (typeof config != "undefined") {
                 merParam = config;
             }
 
             let sdk = new window.MercurySDK({
+                staticUrl: merParam.url,
                 checkoutUrl: merParam.pathCreateTransaction,
                 statusUrl: merParam.pathCheckTransaction,
                 checkStatusInterval: parseInt(merParam.time, 2),
@@ -32,9 +33,9 @@ define([
 
             sdk.on("close", (obj) => {
                 if (obj.status && (obj.status === "TRANSACTION_APROVED")) {
-
+                    jQuery('#checkout_mercury_place_order').trigger("click");
                 } else {
-                    //location.reload();
+                    location.reload();
                 }
             });
         });

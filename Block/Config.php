@@ -63,17 +63,18 @@ class Config extends Template
             'email' => $this->getEmail(),
             'pathCreateTransaction' => $this->getAjaxUrl(),
             'pathCheckTransaction' => $this->getAjaxUrlCheckStatus(),
+            'url' => $this->getViewFileUrl('/')
         ];
     }
 
     public function getAjaxUrl(): string
     {
-        return $this->getUrl('mercury/transaction/mercury');
+        return $this->getUrl('mercury/transaction/mercury', ['_secure' => true]);
     }
 
     public function getAjaxUrlCheckStatus(): string
     {
-        return $this->getUrl('mercury/transaction/check');
+        return $this->getUrl('mercury/transaction/check', ['_secure' => true]);
     }
 
     private function getQuote(): Quote

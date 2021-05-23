@@ -10,11 +10,6 @@
         <!-- ko foreach: getRegion('messages') -->
         <!-- ko template: getTemplate() --><!-- /ko -->
         <!--/ko-->
-        <div class="payment-method-billing-address">
-            <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
-            <!-- ko template: getTemplate() --><!-- /ko -->
-            <!--/ko-->
-        </div>
         <div class="checkout-agreements-block">
 
             <div id="mercury-cash"></div>
@@ -27,6 +22,7 @@
             <div class="primary">
                 <button class="action primary checkout"
                         type="submit"
+                        id="checkout_mercury_place_order"
                         data-bind="
                         click: placeOrder,
                         attr: {title: $t('Place Order')},

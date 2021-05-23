@@ -182,13 +182,13 @@ class Status implements ResponseInterface
 
     /**
      * @param string $user
-     * 
+     *
      * @return Status
      */
     public function setUser(string $user): Status
     {
         $this->user = $user;
-        
+
         return $this;
     }
 
@@ -207,7 +207,7 @@ class Status implements ResponseInterface
     public function setStatus(string $status): Status
     {
         $this->status = $status;
-        
+
         return $this;
     }
 
@@ -216,16 +216,16 @@ class Status implements ResponseInterface
      */
     public function getConfirmations(): int
     {
-        return ($this->сonfirmations) ? $this->сonfirmations : 0;
+        return ($this->confirmations) ? $this->confirmations : 0;
     }
 
     /**
-     * @param int $сonfirmations
+     * @param int $confirmations
      * @return Status
      */
-    public function setConfirmations($сonfirmations): Status
+    public function setConfirmations($confirmations): Status
     {
-        $this->сonfirmations = ($сonfirmations) ? $сonfirmations : 0;
+        $this->confirmations = ($confirmations) ? $confirmations : 0;
 
         return $this;
     }
